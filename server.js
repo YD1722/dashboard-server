@@ -1,4 +1,3 @@
-
 var express = require('express');
 var DarkSky = require('dark-sky');
 const https = require('https');
@@ -54,8 +53,9 @@ app.get('/file/:filename', (req, res) => {
     if (!files || files.length === 0) {
       return res.status(404).json({
         responseCode: 1,
-        responseMessage: "error"
+        responseMessage: "Required file " + req.params.filename + " was not found!"
       });
+      // return res.end(files);
     }
     // create read stream
     var readstream = gfs.createReadStream({
